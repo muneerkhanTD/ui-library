@@ -58,10 +58,11 @@ export const onRequest = defineMiddleware(async ({ request, locals }, next) => {
     }
   }
 
-  // Redirect to login if accessing protected route without user
-  if (!user && request.url.includes("/dashboard")) {
-    return Response.redirect(new URL("/login", request.url), 302);
-  }
+  // Allow dashboard access without auth (demo mode)
+  // Future: uncomment this to require authentication
+  // if (!user && request.url.includes("/dashboard")) {
+  //   return Response.redirect(new URL("/login", request.url), 302);
+  // }
 
   locals.user = user;
   return next();
