@@ -1,0 +1,10 @@
+---
+const { current = 1, total = 10, onPageChange = () => {} } = Astro.props;
+---
+<nav class="flex items-center gap-2">
+  <button class="px-3 py-1 rounded bg-gray-200" disabled={current === 1} onclick={() => onPageChange(current - 1)}>&lt;</button>
+  {[...Array(total)].map((_, i) => (
+    <button class={`px-3 py-1 rounded ${current === i + 1 ? 'bg-indigo-600 text-white' : 'bg-gray-100'}`} onclick={() => onPageChange(i + 1)}>{i + 1}</button>
+  ))}
+  <button class="px-3 py-1 rounded bg-gray-200" disabled={current === total} onclick={() => onPageChange(current + 1)}>&gt;</button>
+</nav>

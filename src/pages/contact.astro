@@ -1,0 +1,255 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Footer from "../components/Footer.astro";
+
+const contactMethods = [
+  { 
+    icon: "📧", 
+    title: "Email", 
+    description: "Send us an email and we'll respond within 24 hours",
+    value: "hello@devpath.dev",
+    link: "mailto:hello@devpath.dev"
+  },
+  { 
+    icon: "💬", 
+    title: "Live Chat", 
+    description: "Chat with our support team in real-time",
+    value: "Available 9 AM - 6 PM EST",
+    link: "#chat"
+  },
+  { 
+    icon: "📞", 
+    title: "Phone", 
+    description: "Call us for urgent support or queries",
+    value: "+1 (555) 123-4567",
+    link: "tel:+15551234567"
+  },
+  { 
+    icon: "🏢", 
+    title: "Office", 
+    description: "Visit our headquarters in San Francisco",
+    value: "123 Tech Street, SF, CA 94105",
+    link: "#"
+  }
+];
+
+const faqItems = [
+  {
+    question: "How long does it take to get a response?",
+    answer: "We aim to respond to all inquiries within 24 hours during business days. For urgent matters, please use our live chat or phone support."
+  },
+  {
+    question: "Do you offer enterprise support?",
+    answer: "Yes! We provide dedicated enterprise support packages with custom SLAs. Contact our sales team for more details."
+  },
+  {
+    question: "Can I schedule a demo?",
+    answer: "Absolutely! Schedule a demo with our product team to see DevPath in action and get personalized recommendations."
+  },
+  {
+    question: "What payment methods do you accept?",
+    answer: "We accept all major credit cards, bank transfers, and custom payment arrangements for enterprise clients."
+  },
+  {
+    question: "Is there a free trial available?",
+    answer: "Yes, start with our free tier to explore all features. Upgrade anytime without commitment."
+  },
+  {
+    question: "Do you have API documentation?",
+    answer: "Comprehensive API documentation is available in our developer portal with code examples and SDKs."
+  }
+];
+---
+
+<BaseLayout title="Contact - DevPath UI Library" description="Get in touch with the DevPath team for support, inquiries, or feedback. We're here to help you on your developer journey.">
+  <!-- Hero Section -->
+  <section class="bg-linear-to-br from-indigo-600 via-purple-600 to-pink-600 text-white py-24 px-6 mb-16">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6">Get in Touch</h1>
+      <p class="text-xl text-indigo-100 mb-8">
+        Have questions about DevPath? We'd love to hear from you. Our team is here to help.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-6 mb-20">
+    <!-- Contact Methods Grid -->
+    <section class="mb-20">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        {contactMethods.map(method => (
+          <a href={method.link} class="group">
+            <div class="bg-white rounded-2xl border border-gray-200 p-8 h-full hover:shadow-xl hover:border-indigo-300 transition-all duration-300">
+              <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">{method.icon}</div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">{method.title}</h3>
+              <p class="text-sm text-gray-600 mb-4">{method.description}</p>
+              <p class="text-indigo-600 font-semibold group-hover:text-purple-600 transition">{method.value}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Main Contact Form and Info -->
+    <section class="grid md:grid-cols-3 gap-8 mb-20">
+      <!-- Contact Form -->
+      <div class="md:col-span-2">
+        <div class="bg-white rounded-2xl border border-gray-200 p-10">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">Send us a Message</h2>
+          <form class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-semibold text-gray-900 mb-2">First Name</label>
+                <input 
+                  type="text" 
+                  placeholder="John" 
+                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-gray-900 mb-2">Last Name</label>
+                <input 
+                  type="text" 
+                  placeholder="Doe" 
+                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Email Address</label>
+              <input 
+                type="email" 
+                placeholder="john@example.com" 
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Subject</label>
+              <select class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                <option>General Inquiry</option>
+                <option>Technical Support</option>
+                <option>Sales</option>
+                <option>Partnership</option>
+                <option>Bug Report</option>
+                <option>Feature Request</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Message</label>
+              <textarea 
+                rows="6"
+                placeholder="Tell us how we can help..." 
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"
+              ></textarea>
+            </div>
+
+            <div class="flex items-center">
+              <input 
+                type="checkbox" 
+                id="terms" 
+                class="w-4 h-4 text-indigo-600 rounded focus:ring-2 focus:ring-indigo-500"
+              />
+              <label for="terms" class="ml-3 text-sm text-gray-700">
+                I'd like to receive updates and news about DevPath
+              </label>
+            </div>
+
+            <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition-all duration-300 hover:scale-105">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Quick Info Sidebar -->
+      <div>
+        <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl border border-indigo-200 p-8 h-fit sticky top-20">
+          <h3 class="text-2xl font-bold text-gray-900 mb-6">Quick Info</h3>
+          
+          <div class="space-y-6">
+            <div>
+              <h4 class="font-bold text-gray-900 mb-2">Business Hours</h4>
+              <p class="text-gray-600 text-sm">
+                Monday - Friday<br/>
+                9:00 AM - 6:00 PM EST
+              </p>
+            </div>
+
+            <hr class="border-indigo-200" />
+
+            <div>
+              <h4 class="font-bold text-gray-900 mb-3">Follow Us</h4>
+              <div class="flex gap-3">
+                <a href="#" class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center hover:bg-purple-600 transition">
+                  f
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center hover:bg-purple-600 transition">
+                  𝕏
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center hover:bg-purple-600 transition">
+                  in
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center hover:bg-purple-600 transition">
+                  G
+                </a>
+              </div>
+            </div>
+
+            <hr class="border-indigo-200" />
+
+            <div>
+              <h4 class="font-bold text-gray-900 mb-3">Get Started</h4>
+              <a href="/login" class="inline-block w-full text-center bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">
+                Sign In
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="mb-20">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+        <p class="text-lg text-gray-600">Find answers to common questions about DevPath</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        {faqItems.map((faq, index) => (
+          <div class="bg-white rounded-2xl border border-gray-200 p-8 hover:shadow-lg transition">
+            <div class="flex gap-4">
+              <div class="text-2xl">
+                {index % 3 === 0 ? "❓" : index % 3 === 1 ? "💡" : "🎯"}
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-gray-900 mb-3">{faq.question}</h3>
+                <p class="text-gray-600 leading-relaxed">{faq.answer}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-linear-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-2xl p-12 text-white text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4">Ready to Get Started?</h2>
+      <p class="text-lg text-indigo-100 mb-8 max-w-2xl mx-auto">
+        Join thousands of developers building beautiful UIs with DevPath. Start your free trial today.
+      </p>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <a href="/signup" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-bold hover:bg-indigo-50 transition">
+          Start Free Trial
+        </a>
+        <a href="/docs" class="border-2 border-white text-white px-8 py-3 rounded-lg font-bold hover:bg-white/10 transition">
+          View Documentation
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <Footer />
+</BaseLayout>

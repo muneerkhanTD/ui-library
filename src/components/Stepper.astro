@@ -1,0 +1,11 @@
+---
+const { steps = [], current = 0 } = Astro.props;
+---
+<div class="flex items-center gap-4">
+  {steps.map((step, i) => (
+    <div class="flex items-center gap-2">
+      <div class={`rounded-full w-8 h-8 flex items-center justify-center font-bold ${i <= current ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-600'}`}>{i + 1}</div>
+      {i < steps.length - 1 && <div class="w-8 h-1 bg-gray-300"></div>}
+    </div>
+  ))}
+</div>

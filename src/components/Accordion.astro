@@ -1,0 +1,13 @@
+---
+const { items = [] } = Astro.props;
+let openIndex = -1;
+function toggle(i) { openIndex = openIndex === i ? -1 : i; }
+---
+<div class="space-y-2">
+  {items.map((item, i) => (
+    <div class="border rounded-lg">
+      <button class="w-full px-4 py-2 text-left font-semibold" onclick={() => toggle(i)}>{item.title}</button>
+      {openIndex === i && <div class="px-4 py-2 text-gray-700">{item.content}</div>}
+    </div>
+  ))}
+</div>

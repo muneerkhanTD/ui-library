@@ -1,0 +1,27 @@
+---
+const { 
+  orientation = 'horizontal',
+  variant = 'solid',
+  className = '',
+  spacing = 'md'
+} = Astro.props;
+
+const spacings = {
+  sm: 'my-2',
+  md: 'my-4',
+  lg: 'my-6',
+  xl: 'my-8'
+};
+
+const variants = {
+  solid: 'border-solid',
+  dashed: 'border-dashed',
+  dotted: 'border-dotted'
+};
+---
+
+{orientation === 'vertical' ? (
+  <div class={`h-full w-px border-l-2 ${variants[variant]} border-gray-300 ${className}`}></div>
+) : (
+  <hr class={`${spacings[spacing]} ${variants[variant]} border-gray-300 ${className}`} />
+)}

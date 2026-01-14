@@ -1,16 +1,20 @@
+
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../sections/Hero.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import Card from "../components/Card.astro";
+import Navbar from "../components/Navbar.astro";
 
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+
+<BaseLayout description="Welcome to DevPath, your ultimate platform for mastering frontend development with structured roadmaps and practical exercises." title="Home">
+  <Hero />
+  <SectionTitle title="What You’ll Learn" subtitle="Grow your frontend skills step by step." />
+  <section class="grid md:grid-cols-3 gap-6">
+    <Card title="React" desc="Build powerful UIs with React." icon="https://images.icon-icons.com/2108/PNG/512/react_icon_130845.png" />
+    <Card title="Angular" desc="Master scalable enterprise apps." icon="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsq1EY-n4Z1gM7gWYppkJ-4VWNG0mdhrEY0A&s" />
+    <Card title="Vue" desc="Fast, elegant front-end development." icon="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvsXyz8eDobC4MvaRkM3zmOZ9ETdrS0ozGCQ&s" />
+  </section>
+</BaseLayout>

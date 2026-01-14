@@ -1,0 +1,321 @@
+
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Footer from "../components/Footer.astro";
+
+const uiComponents = [
+  { name: "Button", icon: "🔘", description: "Customizable buttons with variants" },
+  { name: "Card", icon: "📋", description: "Flexible card layout component" },
+  { name: "Badge", icon: "🏷️", description: "Status and category badges" },
+  { name: "Avatar", icon: "👤", description: "User profile avatars" },
+  { name: "Input", icon: "📝", description: "Form inputs with validation" },
+  { name: "Table", icon: "📊", description: "Data tables with sorting" },
+  { name: "Modal", icon: "🪟", description: "Dialog and modal windows" },
+  { name: "Toast", icon: "🔔", description: "Notification messages" },
+  { name: "Navbar", icon: "🧭", description: "Navigation bar component" },
+  { name: "Sidebar", icon: "📱", description: "Collapsible sidebar menu" },
+  { name: "Dropdown", icon: "▼", description: "Dropdown menu component" },
+  { name: "Pagination", icon: "📄", description: "Page navigation" },
+  { name: "Tabs", icon: "📑", description: "Tabbed content sections" },
+  { name: "Accordion", icon: "📂", description: "Collapsible content panels" },
+  { name: "Tooltip", icon: "💬", description: "Contextual help tooltips" },
+  { name: "Spinner", icon: "⏳", description: "Loading indicators" },
+  { name: "Checkbox", icon: "☑️", description: "Checkbox input control" },
+  { name: "Radio", icon: "⭕", description: "Radio button input" },
+  { name: "Toggle", icon: "🔘", description: "Toggle switch control" },
+  { name: "Stepper", icon: "📍", description: "Multi-step form indicator" },
+  { name: "Breadcrumb", icon: "🔗", description: "Navigation breadcrumbs" },
+  { name: "Progress", icon: "📈", description: "Progress indicators" },
+  { name: "Chip", icon: "🏷️", description: "Compact component tags" },
+  { name: "Select", icon: "📋", description: "Dropdown select input" },
+  { name: "Textarea", icon: "📄", description: "Multi-line text input" },
+];
+
+const dotnetBenefits = [
+  {
+    title: "🔗 Seamless .NET Integration",
+    description: "Works perfectly with ASP.NET Core, Blazor, and Razor Pages. Drop in components without configuration.",
+    benefit: "Zero setup time"
+  },
+  {
+    title: "🛡️ Type-Safe Development",
+    description: "Full TypeScript support ensures type safety across your frontend and backend .NET services.",
+    benefit: "Catch errors at compile time"
+  },
+  {
+    title: "⚡ Blazor Compatible",
+    description: "Use these components directly in Blazor Server and WebAssembly applications with interop support.",
+    benefit: "C# all the way"
+  },
+  {
+    title: "🔌 API-Ready",
+    description: "Designed to work seamlessly with .NET REST and GraphQL APIs out of the box.",
+    benefit: "Connect backend data in minutes"
+  },
+  {
+    title: "⚙️ Performance Optimized",
+    description: "Lightweight components reduce bundle size and improve load times in .NET web apps.",
+    benefit: "Better user experience"
+  },
+  {
+    title: "🏢 Enterprise-Grade",
+    description: "Built for large .NET projects with accessibility, security, and maintainability first.",
+    benefit: "Mission-critical ready"
+  }
+];
+
+const stats = [
+  { number: "50+", label: "UI Components", icon: "📦" },
+  { number: "100%", label: "Responsive", icon: "📱" },
+  { number: "WCAG", label: "Accessible", icon: "♿" },
+  { number: "0", label: "Dependencies", icon: "🔓" }
+];
+---
+
+<BaseLayout title="DevPath UI Library - Enterprise Components for .NET" description="50+ production-ready UI components for ASP.NET Core, Blazor, React, and Astro.">
+  <!-- Hero -->
+  <section class="bg-linear-to-br from-indigo-600 via-purple-600 to-pink-600 text-white py-32 px-6">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="mb-6">
+        <span class="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-semibold backdrop-blur">
+          ✨ Enterprise UI Components
+        </span>
+      </div>
+      <h1 class="text-6xl md:text-7xl font-bold mb-6 leading-tight">
+        Beautiful Components for .NET & Modern Web
+      </h1>
+      <p class="text-xl md:text-2xl text-indigo-100 mb-8 max-w-3xl mx-auto leading-relaxed">
+        50+ production-ready components built for ASP.NET Core, Blazor, and modern web. Ship stunning UIs in days, not weeks.
+      </p>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <a href="/components" class="bg-white text-indigo-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">
+          Browse Components
+        </a>
+        <a href="/dashboard" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition-colors">
+          Get Started Free
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-16 px-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-8">
+        {stats.map(stat => (
+          <div class="text-center">
+            <div class="text-5xl mb-2">{stat.icon}</div>
+            <div class="text-4xl font-bold text-transparent bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text mb-2">
+              {stat.number}
+            </div>
+            <p class="text-gray-600 font-semibold">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Components Grid -->
+  <section class="py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">50+ Production-Ready Components</h2>
+        <p class="text-xl text-gray-600">Fully customizable, accessible, and thoroughly tested</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {uiComponents.map(comp => (
+          <div class="group bg-white border-2 border-gray-100 rounded-xl p-5 hover:border-indigo-500 hover:shadow-lg transition-all cursor-pointer">
+            <div class="text-4xl mb-2 group-hover:scale-110 transition-transform">{comp.icon}</div>
+            <h3 class="text-lg font-bold text-gray-900 mb-1">{comp.name}</h3>
+            <p class="text-xs text-gray-600">{comp.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="/docs" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">
+          View Full Documentation →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- .NET Benefits -->
+  <section class="py-20 px-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Perfect for .NET Projects</h2>
+        <p class="text-xl text-gray-600">Built specifically for enterprise .NET developers</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        {dotnetBenefits.map(benefit => (
+          <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow border-l-4 border-indigo-500">
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">{benefit.title}</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">{benefit.description}</p>
+            <div class="bg-indigo-50 rounded px-4 py-3 text-sm text-indigo-700 font-semibold">
+              ✨ {benefit.benefit}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Blazor Example -->
+  <section class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-gray-900 text-center mb-12">Blazor Integration</h2>
+      <div class="bg-linear-to-br from-indigo-50 to-purple-50 rounded-2xl border-2 border-indigo-200 p-8">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <p class="text-sm font-semibold text-gray-700 mb-3">🔷 Blazor Component</p>
+            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-xs overflow-x-auto">
+              <pre>{`@foreach(var user in users) {
+  <Card>
+    <Avatar name="@user.Name" />
+    <Badge>@user.Status</Badge>
+    <Button>View Profile</Button>
+  </Card>
+}`}</pre>
+            </div>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-gray-700 mb-3">⚡ Razor Pages</p>
+            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-xs overflow-x-auto">
+              <pre>{`@foreach(var user in Model.Users) {
+  <partial name="_UserCard" 
+    model="user" />
+}
+
+<devpath:button variant="primary">
+  Get Started
+</devpath:button>`}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose -->
+  <section class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-4xl font-bold text-gray-900 mb-8">Why DevPath for Your .NET Projects?</h2>
+          <ul class="space-y-6">
+            <li class="flex items-start gap-4">
+              <span class="text-3xl">⚡</span>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900">Save Development Time</h3>
+                <p class="text-gray-600">Don't build buttons from scratch. Use ready-made components and focus on business logic.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="text-3xl">🎨</span>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900">Fully Customizable</h3>
+                <p class="text-gray-600">Built with Tailwind CSS. Change colors and styles without touching component code.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="text-3xl">📱</span>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900">Mobile Ready</h3>
+                <p class="text-gray-600">All components are responsive by default. Works on desktop, tablet, and mobile.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="text-3xl">♿</span>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900">Accessible</h3>
+                <p class="text-gray-600">WCAG 2.1 AA compliant. Best experience for all users.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="text-3xl">🔒</span>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900">Enterprise Security</h3>
+                <p class="text-gray-600">Built with security best practices. Perfect for mission-critical applications.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="text-3xl">📚</span>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900">Comprehensive Docs</h3>
+                <p class="text-gray-600">Detailed guides, code examples, and integration tutorials.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="bg-linear-to-br from-indigo-100 to-purple-100 rounded-2xl p-12 border-2 border-indigo-300">
+          <div class="text-center">
+            <div class="text-7xl mb-6">🚀</div>
+            <h3 class="text-3xl font-bold text-gray-900 mb-4">Ready to Build?</h3>
+            <p class="text-lg text-gray-700 mb-6">Start using DevPath in your next .NET project.</p>
+            <a href="/dashboard" class="inline-block bg-indigo-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">
+              Create Free Account
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="py-20 px-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-gray-900 text-center mb-16">Works With Your Tech Stack</h2>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow border-t-4 border-blue-500">
+          <div class="text-5xl mb-4">🔷</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">ASP.NET Core</h3>
+          <p class="text-gray-600 mb-4">Razor Pages, MVC, and Web API ready</p>
+          <code class="text-sm text-indigo-600 font-mono bg-gray-100 rounded px-3 py-2 inline-block">npm install @devpath/aspnet</code>
+        </div>
+        <div class="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow border-t-4 border-blue-400">
+          <div class="text-5xl mb-4">⚡</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Blazor</h3>
+          <p class="text-gray-600 mb-4">Blazor Server and WebAssembly support</p>
+          <code class="text-sm text-indigo-600 font-mono bg-gray-100 rounded px-3 py-2 inline-block">dotnet add package DevPath.Blazor</code>
+        </div>
+        <div class="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow border-t-4 border-cyan-400">
+          <div class="text-5xl mb-4">⚛️</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">React & Next.js</h3>
+          <p class="text-gray-600 mb-4">Full React component library</p>
+          <code class="text-sm text-indigo-600 font-mono bg-gray-100 rounded px-3 py-2 inline-block">npm install @devpath/react</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-linear-to-r from-indigo-600 to-purple-600 text-white py-20 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-6">Start Building Faster Today</h2>
+      <p class="text-xl text-indigo-100 mb-8">Join thousands of developers using DevPath UI Library</p>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <a href="/docs" class="bg-white text-indigo-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">
+          View All Components
+        </a>
+        <a href="/dashboard" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition-colors">
+          Get Started Free
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  console.log(import.meta.env.PUBLIC_SUPABASE_URL);
+</script>
+
+
+<script>
+  console.log(import.meta.env.PUBLIC_SUPABASE_URL);
+</script>

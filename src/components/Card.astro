@@ -1,0 +1,23 @@
+---
+const { 
+  title = '', 
+  value = '', 
+  icon = '',
+  variant = 'default',
+  className = ''
+} = Astro.props;
+
+const variants = {
+  default: 'bg-white text-gray-900 border border-gray-200 shadow-sm hover:shadow-md',
+  elevated: 'bg-white text-gray-900 shadow-lg hover:shadow-xl',
+  outlined: 'bg-white text-gray-900 border-2 border-gray-300 hover:border-gray-400'
+};
+
+const cardClass = `p-6 rounded-lg transition ${variants[variant] || variants.default} ${className}`;
+---
+
+<div class={cardClass}>
+  {icon && <img src={icon} alt={title} class="w-24 h-24 m-auto mb-4 object-cover rounded" />}
+  {title && <h3 class="text-2xl text-center font-semibold mb-2">{title}</h3>}
+  {value && <p class="text-gray-600 text-center">{value}</p>}
+</div>

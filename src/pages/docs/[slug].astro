@@ -1,0 +1,713 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Footer from "../../components/Footer.astro";
+
+export async function getStaticPaths() {
+  return [
+    { params: { slug: 'button' } },
+    { params: { slug: 'card' } },
+    { params: { slug: 'badge' } },
+    { params: { slug: 'avatar' } },
+    { params: { slug: 'input' } },
+    { params: { slug: 'table' } },
+    { params: { slug: 'toast' } },
+    { params: { slug: 'spinner' } },
+    { params: { slug: 'checkbox' } },
+    { params: { slug: 'radio' } },
+    { params: { slug: 'toggle' } },
+    { params: { slug: 'stepper' } },
+    { params: { slug: 'breadcrumb' } },
+    { params: { slug: 'progress' } },
+    { params: { slug: 'chip' } },
+    { params: { slug: 'select' } },
+    { params: { slug: 'textarea' } },
+    { params: { slug: 'alert' } },
+    { params: { slug: 'link' } },
+    { params: { slug: 'list' } },
+    { params: { slug: 'divider' } },
+    { params: { slug: 'stack' } },
+    { params: { slug: 'grid' } },
+  ];
+}
+
+const { slug } = Astro.params;
+
+const componentDocs = {
+  button: {
+    name: "Button",
+    icon: "🔘",
+    description: "A versatile button component with multiple variants, sizes, and states for different use cases.",
+    category: "Form",
+    variants: [
+      { 
+        name: "Primary", 
+        code: '<button class="bg-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">Click Me</button>',
+        props: { variant: "primary", size: "md" }
+      },
+      { 
+        name: "Secondary", 
+        code: '<button class="bg-gray-200 text-gray-900 px-6 py-2 rounded-lg font-semibold hover:bg-gray-300 transition">Click Me</button>',
+        props: { variant: "secondary", size: "md" }
+      },
+      { 
+        name: "Outline", 
+        code: '<button class="border-2 border-indigo-600 text-indigo-600 px-6 py-2 rounded-lg font-semibold hover:bg-indigo-50 transition">Click Me</button>',
+        props: { variant: "outline", size: "md" }
+      },
+      { 
+        name: "Danger", 
+        code: '<button class="bg-red-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-700 transition">Delete</button>',
+        props: { variant: "danger", size: "md" }
+      },
+      { 
+        name: "Small", 
+        code: '<button class="bg-indigo-600 text-white px-3 py-1 rounded text-sm font-semibold hover:bg-indigo-700 transition">Sm</button>',
+        props: { variant: "primary", size: "sm" }
+      },
+      { 
+        name: "Large", 
+        code: '<button class="bg-indigo-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition">Large</button>',
+        props: { variant: "primary", size: "lg" }
+      },
+      { 
+        name: "Disabled", 
+        code: '<button class="bg-gray-400 text-white px-6 py-2 rounded-lg font-semibold cursor-not-allowed opacity-50" disabled>Disabled</button>',
+        props: { variant: "primary", size: "md", disabled: true }
+      },
+      { 
+        name: "With Icon", 
+        code: '<button class="bg-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition flex items-center gap-2">➕ Add Item</button>',
+        props: { variant: "primary", size: "md", icon: true }
+      }
+    ],
+    api: [
+      { prop: "variant", type: "string", default: "primary", description: "Button style variant: primary, secondary, outline, danger, link" },
+      { prop: "size", type: "string", default: "md", description: "Button size: sm, md, lg" },
+      { prop: "disabled", type: "boolean", default: "false", description: "Disable the button" },
+      { prop: "href", type: "string", default: "-", description: "Link URL (renders as anchor tag)" },
+      { prop: "type", type: "string", default: "button", description: "Button type: button, submit, reset" },
+      { prop: "className", type: "string", default: "-", description: "Additional CSS classes" }
+    ],
+    usage: `<!-- Basic Button -->
+<Button>Click Me</Button>
+
+<!-- With Variant -->
+<Button variant="secondary">Click Me</Button>
+
+<!-- With Size -->
+<Button size="lg">Click Me</Button>
+
+<!-- As Link -->
+<Button href="/page">Go to Page</Button>
+
+<!-- Disabled State -->
+<Button disabled>Disabled</Button>`
+  },
+  card: {
+    name: "Card",
+    icon: "📋",
+    description: "A flexible card component perfect for grouping and displaying content in a contained, organized manner.",
+    category: "Layout",
+    variants: [
+      { 
+        name: "Default", 
+        code: '<div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm hover:shadow-lg transition"><h3>Card Title</h3><p>Card content goes here</p></div>',
+        props: { variant: "default" }
+      },
+      { 
+        name: "Elevated", 
+        code: '<div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition"><h3>Card Title</h3><p>Card content goes here</p></div>',
+        props: { variant: "elevated" }
+      },
+      { 
+        name: "Outlined", 
+        code: '<div class="bg-white rounded-2xl border-2 border-indigo-200 p-6 hover:border-indigo-400 transition"><h3>Card Title</h3><p>Card content goes here</p></div>',
+        props: { variant: "outlined" }
+      },
+      { 
+        name: "With Image", 
+        code: '<div class="bg-white rounded-2xl border border-gray-200 overflow-hidden"><img src="image.jpg" class="w-full h-48 object-cover"/><div class="p-6"><h3>Card Title</h3><p>Card content</p></div></div>',
+        props: { variant: "default", hasImage: true }
+      },
+      { 
+        name: "Compact", 
+        code: '<div class="bg-white rounded-lg border border-gray-200 p-4"><h4>Title</h4><p class="text-sm">Content</p></div>',
+        props: { variant: "default", compact: true }
+      },
+      { 
+        name: "With Hover", 
+        code: '<div class="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-xl hover:border-indigo-300 cursor-pointer transition-all"><h3>Hoverable Card</h3><p>Hover me</p></div>',
+        props: { variant: "default", hoverable: true }
+      }
+    ],
+    api: [
+      { prop: "variant", type: "string", default: "default", description: "Card style: default, elevated, outlined" },
+      { prop: "padding", type: "string", default: "md", description: "Padding size: sm, md, lg" },
+      { prop: "hoverable", type: "boolean", default: "false", description: "Add hover effects" },
+      { prop: "compact", type: "boolean", default: "false", description: "Use compact padding" },
+      { prop: "className", type: "string", default: "-", description: "Additional CSS classes" }
+    ],
+    usage: `<!-- Basic Card -->
+<Card>
+  <h3>Card Title</h3>
+  <p>Card content</p>
+</Card>
+
+<!-- Elevated Card -->
+<Card variant="elevated">
+  <h3>Important Card</h3>
+</Card>
+
+<!-- With Image -->
+<Card>
+  <img src="image.jpg" />
+  <div class="p-6">
+    <h3>Title</h3>
+  </div>
+</Card>`
+  },
+  badge: {
+    name: "Badge",
+    icon: "🏷️",
+    description: "A compact component perfect for displaying status labels, category tags, and badges.",
+    category: "Display",
+    variants: [
+      { 
+        name: "Primary", 
+        code: '<span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-semibold">Active</span>',
+        props: { variant: "primary" }
+      },
+      { 
+        name: "Success", 
+        code: '<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">Success</span>',
+        props: { variant: "success" }
+      },
+      { 
+        name: "Warning", 
+        code: '<span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold">Warning</span>',
+        props: { variant: "warning" }
+      },
+      { 
+        name: "Error", 
+        code: '<span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-semibold">Error</span>',
+        props: { variant: "error" }
+      },
+      { 
+        name: "Outline", 
+        code: '<span class="border-2 border-indigo-300 text-indigo-700 px-3 py-1 rounded-full text-sm font-semibold">Draft</span>',
+        props: { variant: "outline" }
+      },
+      { 
+        name: "With Dot", 
+        code: '<span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-semibold flex items-center gap-2"><span class="w-2 h-2 bg-indigo-600 rounded-full"></span>Active</span>',
+        props: { variant: "primary", withDot: true }
+      }
+    ],
+    api: [
+      { prop: "variant", type: "string", default: "primary", description: "Badge color: primary, success, warning, error, outline" },
+      { prop: "size", type: "string", default: "md", description: "Badge size: sm, md, lg" },
+      { prop: "pill", type: "boolean", default: "true", description: "Pill-shaped badge" },
+      { prop: "dismissible", type: "boolean", default: "false", description: "Show close button" },
+      { prop: "className", type: "string", default: "-", description: "Additional CSS classes" }
+    ],
+    usage: `<!-- Basic Badge -->
+<Badge variant="primary">Active</Badge>
+
+<!-- Success Badge -->
+<Badge variant="success">Completed</Badge>
+
+<!-- Dismissible Badge -->
+<Badge variant="warning" dismissible>Warning</Badge>
+
+<!-- In List -->
+<div class="space-y-2">
+  <Badge>Tag 1</Badge>
+  <Badge>Tag 2</Badge>
+  <Badge>Tag 3</Badge>
+</div>`
+  },
+  avatar: {
+    name: "Avatar",
+    icon: "👤",
+    description: "User profile avatar component with image fallback and multiple size options.",
+    category: "Display",
+    variants: [
+      { 
+        name: "Small", 
+        code: '<img src="avatar.jpg" alt="User name" class="w-8 h-8 rounded-full object-cover ring-2 ring-indigo-300"/>',
+        props: { size: "sm" }
+      },
+      { 
+        name: "Medium", 
+        code: '<img src="avatar.jpg" alt="User name" class="w-10 h-10 rounded-full object-cover ring-2 ring-indigo-300"/>',
+        props: { size: "md" }
+      },
+      { 
+        name: "Large", 
+        code: '<img src="avatar.jpg" alt="User name" class="w-16 h-16 rounded-full object-cover ring-2 ring-indigo-300"/>',
+        props: { size: "lg" }
+      },
+      { 
+        name: "With Status", 
+        code: '<div class="relative w-10 h-10"><img src="avatar.jpg" class="w-full h-full rounded-full object-cover"/><span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full ring-2 ring-white"></span></div>',
+        props: { size: "md", status: "online" }
+      },
+      { 
+        name: "Initials", 
+        code: '<div class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-sm">MK</div>',
+        props: { size: "md", fallback: "initials" }
+      },
+      { 
+        name: "Group", 
+        code: '<div class="flex -space-x-3"><img src="avatar1.jpg" class="w-10 h-10 rounded-full ring-2 ring-white"/><img src="avatar2.jpg" class="w-10 h-10 rounded-full ring-2 ring-white"/><img src="avatar3.jpg" class="w-10 h-10 rounded-full ring-2 ring-white"/></div>',
+        props: { variant: "group" }
+      }
+    ],
+    api: [
+      { prop: "src", type: "string", default: "-", description: "Image source URL" },
+      { prop: "alt", type: "string", default: "-", description: "Alt text for image" },
+      { prop: "size", type: "string", default: "md", description: "Avatar size: sm, md, lg, xl" },
+      { prop: "status", type: "string", default: "-", description: "Status indicator: online, offline, away" },
+      { prop: "fallback", type: "string", default: "-", description: "Fallback: initials, icon" }
+    ],
+    usage: `<!-- Basic Avatar -->
+<Avatar src="path/to/image.jpg" alt="User" />
+
+<!-- With Status -->
+<Avatar src="path/to/image.jpg" status="online" />
+
+<!-- Initials Fallback -->
+<Avatar fallback="MK" />
+
+<!-- Group of Avatars -->
+<AvatarGroup>
+  <Avatar src="avatar1.jpg" />
+  <Avatar src="avatar2.jpg" />
+  <Avatar src="avatar3.jpg" />
+</AvatarGroup>`
+  },
+  input: {
+    name: "Input",
+    icon: "📝",
+    description: "Form input field with multiple types, sizes, and validation states.",
+    category: "Form",
+    variants: [
+      { name: "Text", code: '<input type="text" placeholder="Enter text" class="px-4 py-2 border border-gray-300 rounded-lg"/>', props: { type: "text" } },
+      { name: "Email", code: '<input type="email" placeholder="Enter email" class="px-4 py-2 border border-gray-300 rounded-lg"/>', props: { type: "email" } },
+      { name: "Password", code: '<input type="password" placeholder="Enter password" class="px-4 py-2 border border-gray-300 rounded-lg"/>', props: { type: "password" } },
+      { name: "Number", code: '<input type="number" placeholder="Enter number" class="px-4 py-2 border border-gray-300 rounded-lg"/>', props: { type: "number" } },
+      { name: "Search", code: '<input type="search" placeholder="Search..." class="px-4 py-2 border border-gray-300 rounded-lg"/>', props: { type: "search" } },
+      { name: "Disabled", code: '<input type="text" disabled class="px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 opacity-50 cursor-not-allowed"/>', props: { disabled: true } }
+    ],
+    api: [
+      { prop: "type", type: "string", default: "text", description: "Input type: text, email, password, number, search" },
+      { prop: "size", type: "string", default: "md", description: "Input size: sm, md, lg" },
+      { prop: "placeholder", type: "string", default: "-", description: "Placeholder text" },
+      { prop: "disabled", type: "boolean", default: "false", description: "Disable input" },
+      { prop: "required", type: "boolean", default: "false", description: "Mark as required" }
+    ],
+    usage: `<Input type="email" placeholder="Enter email" />`
+  },
+  table: {
+    name: "Table",
+    icon: "📊",
+    description: "Data table component with rows, columns, and sortable headers.",
+    category: "Display",
+    variants: [
+      { name: "Default", code: '<table class="w-full border-collapse"><tr><th class="p-3 border">Header</th></tr><tr><td class="p-3 border">Data</td></tr></table>', props: { variant: "default" } },
+      { name: "Striped", code: '<table class="w-full"><tr class="bg-gray-50"><th class="p-3">Header</th></tr><tr><td class="p-3">Data</td></tr></table>', props: { variant: "striped" } },
+      { name: "Bordered", code: '<table class="w-full border-2 border-collapse"><tr><th class="p-3 border">Header</th></tr><tr><td class="p-3 border">Data</td></tr></table>', props: { variant: "bordered" } }
+    ],
+    api: [
+      { prop: "rows", type: "array", default: "[]", description: "Table row data" },
+      { prop: "columns", type: "array", default: "[]", description: "Column headers" },
+      { prop: "variant", type: "string", default: "default", description: "Table style: default, striped, bordered" }
+    ],
+    usage: `<Table rows={data} columns={['Name', 'Email', 'Status']} />`
+  },
+  toast: {
+    name: "Toast",
+    icon: "🔔",
+    description: "Notification toast messages with auto-dismiss.",
+    category: "Feedback",
+    variants: [
+      { name: "Success", code: '<div class="bg-green-500 text-white p-4 rounded-lg">Success message</div>', props: { type: "success" } },
+      { name: "Error", code: '<div class="bg-red-500 text-white p-4 rounded-lg">Error message</div>', props: { type: "error" } },
+      { name: "Warning", code: '<div class="bg-yellow-500 text-white p-4 rounded-lg">Warning message</div>', props: { type: "warning" } },
+      { name: "Info", code: '<div class="bg-blue-500 text-white p-4 rounded-lg">Info message</div>', props: { type: "info" } }
+    ],
+    api: [
+      { prop: "type", type: "string", default: "info", description: "Toast type: success, error, warning, info" },
+      { prop: "message", type: "string", default: "-", description: "Toast message" },
+      { prop: "position", type: "string", default: "top-right", description: "Toast position" },
+      { prop: "duration", type: "number", default: "3000", description: "Auto-dismiss time in ms" }
+    ],
+    usage: `<Toast type="success" message="Saved!" />`
+  },
+  spinner: {
+    name: "Spinner",
+    icon: "⏳",
+    description: "Loading indicators.",
+    category: "Feedback",
+    variants: [
+      { name: "Small", code: '<div class="w-4 h-4 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>', props: { size: "sm" } },
+      { name: "Medium", code: '<div class="w-8 h-8 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>', props: { size: "md" } },
+      { name: "Large", code: '<div class="w-12 h-12 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>', props: { size: "lg" } }
+    ],
+    api: [
+      { prop: "size", type: "string", default: "md", description: "Spinner size: sm, md, lg" },
+      { prop: "color", type: "string", default: "indigo", description: "Spinner color" }
+    ],
+    usage: `<Spinner size="md" color="indigo" />`
+  },
+  checkbox: {
+    name: "Checkbox",
+    icon: "☑️",
+    description: "Checkbox input for multiple selections.",
+    category: "Form",
+    variants: [
+      { name: "Unchecked", code: '<input type="checkbox" class="w-4 h-4 rounded"/>', props: { checked: false } },
+      { name: "Checked", code: '<input type="checkbox" checked class="w-4 h-4 rounded"/>', props: { checked: true } },
+      { name: "Disabled", code: '<input type="checkbox" disabled class="w-4 h-4 rounded opacity-50"/>', props: { disabled: true } }
+    ],
+    api: [
+      { prop: "checked", type: "boolean", default: "false", description: "Checked state" },
+      { prop: "disabled", type: "boolean", default: "false", description: "Disable checkbox" },
+      { prop: "label", type: "string", default: "-", description: "Label text" }
+    ],
+    usage: `<Checkbox label="Agree" checked={false} onChange={() => {}} />`
+  },
+  radio: {
+    name: "Radio",
+    icon: "⭕",
+    description: "Radio button for single selection.",
+    category: "Form",
+    variants: [
+      { name: "Unchecked", code: '<input type="radio" class="w-4 h-4"/>', props: { checked: false } },
+      { name: "Checked", code: '<input type="radio" checked class="w-4 h-4"/>', props: { checked: true } }
+    ],
+    api: [
+      { prop: "name", type: "string", default: "-", description: "Radio group name" },
+      { prop: "value", type: "string", default: "-", description: "Option value" },
+      { prop: "checked", type: "boolean", default: "false", description: "Checked state" },
+      { prop: "label", type: "string", default: "-", description: "Label text" }
+    ],
+    usage: `<Radio name="options" value="1" label="Option 1" />`
+  },
+  toggle: {
+    name: "Toggle",
+    icon: "🔘",
+    description: "Toggle switch for boolean selections.",
+    category: "Form",
+    variants: [
+      { name: "Off", code: '<button role="switch" aria-checked="false" class="w-10 h-6 bg-gray-300 rounded-full"></button>', props: { checked: false } },
+      { name: "On", code: '<button role="switch" aria-checked="true" class="w-10 h-6 bg-indigo-600 rounded-full"></button>', props: { checked: true } }
+    ],
+    api: [
+      { prop: "checked", type: "boolean", default: "false", description: "Toggle state" },
+      { prop: "label", type: "string", default: "-", description: "Label text" },
+      { prop: "onChange", type: "function", default: "-", description: "Change handler" }
+    ],
+    usage: `<Toggle checked={false} label="Notifications" onChange={() => {}} />`
+  },
+  stepper: {
+    name: "Stepper",
+    icon: "📍",
+    description: "Multi-step form indicator.",
+    category: "Navigation",
+    variants: [
+      { name: "Default", code: '<div class="flex gap-2"><span>1</span><span>2</span><span>3</span></div>', props: { variant: "default" } }
+    ],
+    api: [
+      { prop: "steps", type: "array", default: "[]", description: "Step labels" },
+      { prop: "current", type: "number", default: "0", description: "Current step" },
+      { prop: "onStepClick", type: "function", default: "-", description: "Step click handler" }
+    ],
+    usage: `<Stepper steps={['Step 1', 'Step 2', 'Step 3']} current={0} />`
+  },
+  breadcrumb: {
+    name: "Breadcrumb",
+    icon: "🔗",
+    description: "Navigation breadcrumbs.",
+    category: "Navigation",
+    variants: [
+      { name: "Default", code: '<nav><a href="#">Home</a> / <a href="#">Products</a></nav>', props: { variant: "default" } }
+    ],
+    api: [
+      { prop: "items", type: "array", default: "[]", description: "Breadcrumb items" },
+      { prop: "separator", type: "string", default: "/", description: "Separator text" }
+    ],
+    usage: `<Breadcrumb items={[{label: 'Home', href: '/'}, {label: 'Products', href: '/products'}]} />`
+  },
+  progress: {
+    name: "Progress",
+    icon: "📈",
+    description: "Progress indicators for task completion.",
+    category: "Display",
+    variants: [
+      { name: "Default", code: '<div class="bg-gray-200 h-2 rounded"><div class="bg-indigo-600 h-2 w-1/2 rounded"></div></div>', props: { variant: "default" } },
+      { name: "Striped", code: '<div class="bg-gray-200 h-2 rounded"><div class="bg-indigo-600 h-2 w-1/2 rounded striped"></div></div>', props: { variant: "striped" } }
+    ],
+    api: [
+      { prop: "value", type: "number", default: "0", description: "Progress value" },
+      { prop: "max", type: "number", default: "100", description: "Maximum value" },
+      { prop: "showLabel", type: "boolean", default: "false", description: "Show percentage" }
+    ],
+    usage: `<Progress value={65} max={100} />`
+  },
+  chip: {
+    name: "Chip",
+    icon: "🏷️",
+    description: "Compact tags for filtering.",
+    category: "Form",
+    variants: [
+      { name: "Default", code: '<span class="bg-gray-100 text-gray-900 px-3 py-1 rounded-full text-sm">Tag</span>', props: { variant: "default" } },
+      { name: "Removable", code: '<span class="bg-gray-100 text-gray-900 px-3 py-1 rounded-full text-sm flex items-center gap-2">Tag <button>×</button></span>', props: { removable: true } }
+    ],
+    api: [
+      { prop: "label", type: "string", default: "-", description: "Chip label" },
+      { prop: "removable", type: "boolean", default: "false", description: "Can remove chip" },
+      { prop: "variant", type: "string", default: "default", description: "Chip style" }
+    ],
+    usage: `<Chip label="JavaScript" removable={true} />`
+  },
+  select: {
+    name: "Select",
+    icon: "📋",
+    description: "Dropdown select input.",
+    category: "Form",
+    variants: [
+      { name: "Default", code: '<select class="px-4 py-2 border border-gray-300 rounded-lg"><option>Option 1</option></select>', props: { variant: "default" } },
+      { name: "Multiple", code: '<select multiple class="px-4 py-2 border border-gray-300 rounded-lg"><option>Option 1</option></select>', props: { multiple: true } }
+    ],
+    api: [
+      { prop: "options", type: "array", default: "[]", description: "Select options" },
+      { prop: "placeholder", type: "string", default: "-", description: "Placeholder text" },
+      { prop: "multiple", type: "boolean", default: "false", description: "Multiple selection" },
+      { prop: "size", type: "string", default: "md", description: "Select size" }
+    ],
+    usage: `<Select options={[{label: 'Option 1', value: '1'}]} />`
+  },
+  textarea: {
+    name: "Textarea",
+    icon: "📄",
+    description: "Multi-line text input.",
+    category: "Form",
+    variants: [
+      { name: "Default", code: '<textarea class="px-4 py-2 border border-gray-300 rounded-lg" rows="5"></textarea>', props: { variant: "default" } }
+    ],
+    api: [
+      { prop: "placeholder", type: "string", default: "-", description: "Placeholder text" },
+      { prop: "rows", type: "number", default: "5", description: "Number of rows" },
+      { prop: "maxLength", type: "number", default: "-", description: "Max character count" },
+      { prop: "size", type: "string", default: "md", description: "Textarea size" }
+    ],
+    usage: `<Textarea placeholder="Enter text..." rows={5} />`
+  },
+  alert: {
+    name: "Alert",
+    icon: "⚠️",
+    description: "Alert messages for notifications.",
+    category: "Feedback",
+    variants: [
+      { name: "Success", code: '<div class="bg-green-50 border border-green-200 text-green-700 p-4 rounded-lg">Success message</div>', props: { type: "success" } },
+      { name: "Error", code: '<div class="bg-red-50 border border-red-200 text-red-700 p-4 rounded-lg">Error message</div>', props: { type: "error" } },
+      { name: "Warning", code: '<div class="bg-yellow-50 border border-yellow-200 text-yellow-700 p-4 rounded-lg">Warning message</div>', props: { type: "warning" } },
+      { name: "Info", code: '<div class="bg-blue-50 border border-blue-200 text-blue-700 p-4 rounded-lg">Info message</div>', props: { type: "info" } }
+    ],
+    api: [
+      { prop: "type", type: "string", default: "info", description: "Alert type: success, error, warning, info" },
+      { prop: "title", type: "string", default: "-", description: "Alert title" },
+      { prop: "closeable", type: "boolean", default: "false", description: "Can close alert" }
+    ],
+    usage: `<Alert type="warning" title="Warning" closeable={true} />`
+  },
+  link: {
+    name: "Link",
+    icon: "🔗",
+    description: "Styled link component.",
+    category: "Navigation",
+    variants: [
+      { name: "Default", code: '<a href="#" class="text-indigo-600 hover:text-indigo-700">Link</a>', props: { variant: "default" } },
+      { name: "Underline", code: '<a href="#" class="text-indigo-600 underline hover:text-indigo-700">Link</a>', props: { variant: "underline" } },
+      { name: "Button", code: '<a href="#" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">Link</a>', props: { variant: "button" } }
+    ],
+    api: [
+      { prop: "text", type: "string", default: "-", description: "Link text" },
+      { prop: "href", type: "string", default: "-", description: "Link URL" },
+      { prop: "variant", type: "string", default: "default", description: "Link style" },
+      { prop: "size", type: "string", default: "md", description: "Link size" }
+    ],
+    usage: `<Link text="Click here" href="/page" variant="default" />`
+  },
+  list: {
+    name: "List",
+    icon: "📝",
+    description: "Ordered and unordered lists.",
+    category: "Layout",
+    variants: [
+      { name: "Unordered", code: '<ul><li>Item 1</li><li>Item 2</li></ul>', props: { ordered: false } },
+      { name: "Ordered", code: '<ol><li>Item 1</li><li>Item 2</li></ol>', props: { ordered: true } }
+    ],
+    api: [
+      { prop: "items", type: "array", default: "[]", description: "List items" },
+      { prop: "ordered", type: "boolean", default: "false", description: "Ordered list" }
+    ],
+    usage: `<List items={['Item 1', 'Item 2']} ordered={false} />`
+  },
+  divider: {
+    name: "Divider",
+    icon: "─",
+    description: "Content separator.",
+    category: "Layout",
+    variants: [
+      { name: "Horizontal", code: '<hr class="border-t border-gray-300"/>', props: { orientation: "horizontal" } },
+      { name: "Vertical", code: '<div class="border-l border-gray-300 h-full"></div>', props: { orientation: "vertical" } }
+    ],
+    api: [
+      { prop: "orientation", type: "string", default: "horizontal", description: "Divider direction" },
+      { prop: "variant", type: "string", default: "solid", description: "Divider style: solid, dashed, dotted" }
+    ],
+    usage: `<Divider orientation="horizontal" />`
+  },
+  stack: {
+    name: "Stack",
+    icon: "📚",
+    description: "Flexible layout stacking.",
+    category: "Layout",
+    variants: [
+      { name: "Vertical", code: '<div class="flex flex-col gap-4"><div>Item 1</div><div>Item 2</div></div>', props: { direction: "column" } },
+      { name: "Horizontal", code: '<div class="flex flex-row gap-4"><div>Item 1</div><div>Item 2</div></div>', props: { direction: "row" } }
+    ],
+    api: [
+      { prop: "direction", type: "string", default: "column", description: "Stack direction: row, column" },
+      { prop: "gap", type: "string", default: "md", description: "Gap size: sm, md, lg" }
+    ],
+    usage: `<Stack direction="column" gap="md">Items</Stack>`
+  },
+  grid: {
+    name: "Grid",
+    icon: "⊞",
+    description: "CSS Grid layout.",
+    category: "Layout",
+    variants: [
+      { name: "2 Columns", code: '<div class="grid grid-cols-2 gap-4"><div>Item 1</div><div>Item 2</div></div>', props: { cols: 2 } },
+      { name: "3 Columns", code: '<div class="grid grid-cols-3 gap-4"><div>Item 1</div><div>Item 2</div><div>Item 3</div></div>', props: { cols: 3 } },
+      { name: "4 Columns", code: '<div class="grid grid-cols-4 gap-4"><div>Item 1</div><div>Item 2</div><div>Item 3</div><div>Item 4</div></div>', props: { cols: 4 } }
+    ],
+    api: [
+      { prop: "cols", type: "number", default: "3", description: "Number of columns" },
+      { prop: "gap", type: "string", default: "md", description: "Gap size: sm, md, lg" }
+    ],
+    usage: `<Grid cols={3} gap="md">Items</Grid>`
+  }
+};
+
+const component = componentDocs[slug as keyof typeof componentDocs];
+
+if (!component) {
+  return Astro.redirect('/components');
+}
+---
+
+<BaseLayout title={`${component.name} - DevPath Components`} description={component.description}>
+  <!-- Navigation Breadcrumb -->
+  <div class="bg-gray-50 border-b border-gray-200 px-6 py-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex items-center gap-2 text-sm">
+        <a href="/components" class="text-indigo-600 hover:text-indigo-700">Components</a>
+        <span class="text-gray-400">/</span>
+        <span class="text-gray-600">{component.name}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <!-- Header Section -->
+    <div class="mb-16 border-b border-gray-200 pb-12">
+      <div class="flex items-start gap-6 mb-6">
+        <div class="text-6xl">{component.icon}</div>
+        <div class="flex-1">
+          <h1 class="text-5xl font-bold text-gray-900 mb-3">{component.name}</h1>
+          <p class="text-xl text-gray-600 mb-4">{component.description}</p>
+          <div class="flex gap-3">
+            <span class="inline-block bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm font-semibold">
+              {component.category}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two Column Layout -->
+    <div class="mb-20">
+      <!-- Main Content -->
+        <!-- Variants Section -->
+        <section class="mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">Variants</h2>
+          <div class="grid md:grid-cols-3 gap-8">
+            {component.variants.map((variant, index) => (
+              <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg transition">
+                <!-- Preview -->
+                <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-8 min-h-40 flex items-center justify-center border-b border-gray-200">
+                  <div set:html={variant.code} />
+                </div>
+
+                <!-- Info -->
+                <div class="p-6">
+                  <h3 class="text-lg font-bold text-gray-900 mb-3">{variant.name}</h3>
+                  
+                  <!-- Props -->
+                  <div class="mb-4">
+                    <p class="text-xs font-semibold text-gray-700 mb-2">Props:</p>
+                    <div class="space-y-1">
+                      {Object.entries(variant.props).map(([key, value]) => (
+                        <code class="text-xs text-gray-600 block">{key}="{String(value)}"</code>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- API Documentation -->
+        <section class="mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">Props / API</h2>
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse">
+              <thead>
+                <tr class="bg-gray-50 border-b-2 border-gray-200">
+                  <th class="text-left px-6 py-4 font-bold text-gray-900">Prop</th>
+                  <th class="text-left px-6 py-4 font-bold text-gray-900">Type</th>
+                  <th class="text-left px-6 py-4 font-bold text-gray-900">Default</th>
+                  <th class="text-left px-6 py-4 font-bold text-gray-900">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                {component.api.map((row) => (
+                  <tr class="border-b border-gray-200 hover:bg-gray-50">
+                    <td class="px-6 py-4"><code class="text-indigo-600 font-semibold">{row.prop}</code></td>
+                    <td class="px-6 py-4"><code class="text-gray-600 text-sm">{row.type}</code></td>
+                    <td class="px-6 py-4"><code class="text-gray-600 text-sm">{row.default}</code></td>
+                    <td class="px-6 py-4 text-gray-600">{row.description}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Usage Section -->
+        <section class="mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8">Usage</h2>
+          <div class="bg-gray-900 rounded-2xl p-6">
+            <pre class="text-green-400 font-mono text-sm overflow-x-auto"><code>{component.usage}</code></pre>
+          </div>
+        </section>
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>

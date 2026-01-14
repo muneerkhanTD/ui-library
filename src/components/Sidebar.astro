@@ -1,0 +1,23 @@
+---
+export type Item = { label: string; href?: string; icon?: string };
+export let items: Item[] = [];
+export let collapsed: boolean = false;
+export let className: string = '';
+---
+
+<!-- Sidebar component
+Props:
+- items: array of { label, href, icon }
+- collapsed: boolean to render compact view
+-->
+
+<aside class={`bg-white border-r ${collapsed ? 'w-16' : 'w-64'} p-3 ${className}`}>
+  <nav class="space-y-1">
+    {items.map(item => (
+      <a href={item.href ?? '#'} class="flex items-center gap-3 px-2 py-2 rounded hover:bg-gray-100">
+        {item.icon && <img src={item.icon} alt="" class="w-5 h-5" />}
+        {!collapsed && <span>{item.label}</span>}
+      </a>
+    ))}
+  </nav>
+</aside>

@@ -1,0 +1,32 @@
+---
+const { 
+  text = '', 
+  href = '/',
+  variant = 'default',
+  size = 'md',
+  className = ''
+} = Astro.props;
+
+const variants = {
+  default: 'text-indigo-600 hover:text-indigo-700',
+  underline: 'text-indigo-600 underline hover:no-underline',
+  button: 'bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700'
+};
+
+const sizes = {
+  sm: 'text-sm',
+  md: 'text-base',
+  lg: 'text-lg'
+};
+
+const linkClass = `${variants[variant] || variants.default} ${variant !== 'button' ? sizes[size] : ''} transition ${className}`;
+---
+
+<a href={href} class={linkClass}>
+  {text}
+</a>
+
+<span class="text-blue-500 hover:underline">
+  {text}
+  <Icon name="astro" />
+</span>

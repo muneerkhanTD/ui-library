@@ -1,0 +1,52 @@
+---
+
+export let src: string | undefined;
+export let alt: string = 'Avatar';
+export let size: 'sm' | 'md' | 'lg' = 'md';
+export let rounded: boolean = true;
+export let className: string = '';
+
+const sizes = { 
+    sm: 'w-8 h-8 text-xs', 
+    md: 'w-12 h-12 text-sm', 
+    lg: 'w-16 h-16 text-base' 
+};
+const radius = rounded ? 'rounded-full' : 'rounded';
+const sizeClasses = sizes[size];
+
+// Final classes for the wrapper/image
+const finalClasses = `${sizeClasses} ${radius} ${className}`;
+
+let content;
+
+if (src) {
+    // Agar 'src' hai, toh image render hogi
+    content = { type: 'img', src: src, alt: alt };
+} else {
+    // Agar 'src' nahi hai, toh initials (text) render hoga
+    // fallback: initials from alt
+    const initials = alt.split(' ').map(s => s[0]).slice(0,2).join('').toUpperCase();
+    
+    // Initial class mein background aur text color bhi add kar diya
+    const textClasses = `inline-flex items-center justify-center bg-gray-200 text-gray-700 ${finalClasses}`;
+
+    content = { type: 'initials', text: initials, class: textClasses };
+}
+
+---
+
+{content.type === 'img' ? (
+    // Image Markup
+    <img 
+        src={content.src} 
+        alt={content.alt} 
+        class={`${finalClasses} object-cover`} 
+    />
+) : (
+    // Initials Fallback Markup
+    <span 
+        class={content.class}
+    >
+        {content.text}
+    </span>
+)}

@@ -1,0 +1,36 @@
+---
+const { 
+  options = [], 
+  placeholder = 'Select...', 
+  value = '', 
+  onChange = () => {},
+  size = 'md',
+  className = '',
+  disabled = false,
+  multiple = false,
+  name = ''
+} = Astro.props;
+
+const sizes = {
+  sm: 'text-sm px-2 py-1',
+  md: 'text-base px-3 py-2',
+  lg: 'text-lg px-4 py-3'
+};
+
+const baseClass = 'border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50';
+const selectClass = `${baseClass} ${sizes[size]} ${className}`;
+---
+
+<select 
+  class={selectClass}
+  value={value} 
+  onchange={onChange}
+  disabled={disabled}
+  multiple={multiple}
+  name={name}
+>
+  {!multiple && <option value="" disabled selected>{placeholder}</option>}
+  {options.map(opt => (
+    <option value={opt.value || opt}>{opt.label || opt}</option>
+  ))}
+</select>

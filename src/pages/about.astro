@@ -1,0 +1,234 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Footer from "../components/Footer.astro";
+
+const team = [
+  {
+    name: "Alex Johnson",
+    role: "Founder & Lead Developer",
+    bio: "Full-stack engineer with 10+ years of experience building scalable web applications.",
+    avatar: "https://i.pravatar.cc/150?img=10"
+  },
+  {
+    name: "Sarah Williams",
+    role: "Product Designer",
+    bio: "UX/UI specialist passionate about creating intuitive learning experiences.",
+    avatar: "https://i.pravatar.cc/150?img=20"
+  },
+  {
+    name: "Mike Rodriguez",
+    role: "Content Lead",
+    bio: "Expert instructor with background teaching frontend development to 1000+ students.",
+    avatar: "https://i.pravatar.cc/150?img=30"
+  },
+  {
+    name: "Emma Thompson",
+    role: "Community Manager",
+    bio: "Dedicated to building and nurturing our global community of developers.",
+    avatar: "https://i.pravatar.cc/150?img=40"
+  }
+];
+
+const values = [
+  {
+    title: "Education First",
+    description: "We believe quality education should be accessible to everyone, regardless of background.",
+    icon: "📚"
+  },
+  {
+    title: "Practical Learning",
+    description: "Theory without practice is incomplete. We focus on real-world, hands-on projects.",
+    icon: "🛠️"
+  },
+  {
+    title: "Community Driven",
+    description: "Our community is our strength. We foster collaboration and peer learning.",
+    icon: "🤝"
+  },
+  {
+    title: "Continuous Growth",
+    description: "Technology evolves constantly. We keep our content fresh and up-to-date.",
+    icon: "🚀"
+  }
+];
+
+const stats = [
+  { number: "50K+", label: "Active Learners" },
+  { number: "15+", label: "Courses Available" },
+  { number: "10K+", label: "Projects Completed" },
+  { number: "95%", label: "Satisfaction Rate" }
+];
+---
+
+<BaseLayout title="About" description="Learn about DevPath's mission to help developers master frontend development with structured learning paths and expert guidance.">
+  <!-- Hero Section -->
+  <section class="bg-linear-to-br from-indigo-600 via-purple-600 to-pink-600 text-white py-20 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+        About DevPath
+      </h1>
+      <p class="text-xl text-indigo-100 leading-relaxed">
+        We're on a mission to democratize frontend development education and help developers reach their full potential.
+      </p>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="py-20 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">Our Mission</h2>
+          <p class="text-lg text-gray-600 mb-4 leading-relaxed">
+            DevPath was founded with a simple vision: to make high-quality frontend development education accessible to everyone. We believe that great developers aren't born—they're trained through structured learning, practical experience, and community support.
+          </p>
+          <p class="text-lg text-gray-600 leading-relaxed">
+            Our platform combines carefully curated content, hands-on projects, and a vibrant community to help developers at every level master the skills they need to succeed in today's job market.
+          </p>
+        </div>
+        <div class="bg-linear-to-br from-indigo-500 to-purple-500 rounded-2xl p-12 text-white text-center">
+          <div class="text-6xl font-bold mb-2">🎯</div>
+          <p class="text-lg">Empowering developers to build their futures</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-20 px-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">By The Numbers</h2>
+        <p class="text-xl text-gray-600">Growing impact in the developer community</p>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-8">
+        {stats.map(stat => (
+          <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow">
+            <div class="text-4xl font-bold text-transparent bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text mb-2">
+              {stat.number}
+            </div>
+            <p class="text-gray-600 font-semibold">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Core Values</h2>
+        <p class="text-xl text-gray-600">What drives us forward every single day</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        {values.map(value => (
+          <div class="bg-white border-2 border-gray-100 rounded-xl p-8 hover:border-indigo-500 hover:shadow-lg transition-all">
+            <div class="text-5xl mb-4">{value.icon}</div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">{value.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="py-20 px-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Meet Our Team</h2>
+        <p class="text-xl text-gray-600">Passionate educators and developers dedicated to your success</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {team.map(member => (
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+            <img src={member.avatar} alt={member.name} class="w-full h-48 object-cover" />
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
+              <p class="text-indigo-600 font-semibold mb-3">{member.role}</p>
+              <p class="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="py-20 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-4xl font-bold text-gray-900 mb-12 text-center">Our Story</h2>
+      
+      <div class="space-y-8">
+        <div class="flex gap-6">
+          <div class="flex-shrink-0 w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">
+            2020
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">The Beginning</h3>
+            <p class="text-gray-600 leading-relaxed">
+              DevPath was born out of frustration with fragmented learning resources. Our founder spent months researching the best way to teach frontend development and realized there was a gap in the market for structured, practical education.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-6">
+          <div class="flex-shrink-0 w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">
+            2021
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">First Cohort</h3>
+            <p class="text-gray-600 leading-relaxed">
+              We launched with 100 beta users and iterated based on their feedback. The response was incredible—85% completion rate and overwhelmingly positive testimonials. We knew we were onto something special.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-6">
+          <div class="flex-shrink-0 w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">
+            2022
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Rapid Growth</h3>
+            <p class="text-gray-600 leading-relaxed">
+              We expanded our team, added new courses (Angular and Vue), and hit 10,000 learners. The community became the heart of DevPath, with peer learning and mentorship emerging as key success factors.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-6">
+          <div class="flex-shrink-0 w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">
+            Today
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Empowering Developers Worldwide</h3>
+            <p class="text-gray-600 leading-relaxed">
+              With 50,000+ active learners from 150+ countries, we're proud to be a trusted platform for frontend development education. Our commitment to quality, practical learning remains as strong as ever.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-linear-to-r from-indigo-600 to-purple-600 text-white py-20 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-6">Join Our Community</h2>
+      <p class="text-xl text-indigo-100 mb-8">Be part of something bigger. Learn, grow, and succeed with DevPath.</p>
+      <a href="/dashboard" class="bg-white text-indigo-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors inline-block">
+        Get Started Today
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  console.log(import.meta.env.PUBLIC_SUPABASE_URL);
+</script>

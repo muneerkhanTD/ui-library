@@ -1,0 +1,60 @@
+---
+import { cn } from '../utils/classnames';
+
+const {
+  variant = 'primary',
+  size = 'md',
+  shape = 'rounded',
+  disabled = false,
+  href = '',
+  type = 'button',
+  class: extraClass = '',
+} = Astro.props;
+const { text } = Astro.props;
+
+// Base styles
+const base = 'focus:outline-none focus:ring transition-all ';
+
+// Variant styles
+const variants = {
+  primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-300',
+  secondary: 'bg-gray-100 text-gray-800 hover:bg-gray-200 focus:ring-gray-300',
+  outline: 'border border-gray-300 text-gray-700 hover:bg-gray-100',
+  danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-300',
+  link: 'inline-block text-blue-600 hover:underline',
+};
+
+// Size styles
+const sizes = {
+  sm: 'text-sm px-3 py-1.5',
+  md: 'text-base px-4 py-2',
+  lg: 'text-lg px-6 py-3',
+};
+
+// Shape styles
+const shapes = {
+  rounded: 'rounded-md',
+  pill: 'rounded-full',
+  square: 'rounded-none',
+};
+
+const buttonClass = cn(
+  base,
+  variants[variant],
+  sizes[size],
+  shapes[shape],
+  disabled && 'opacity-60 cursor-not-allowed ',
+  extraClass
+);
+
+---
+
+{href ? (
+  <a href={href} class={buttonClass} aria-disabled={disabled}>
+    {text}
+  </a>
+) : (
+  <button type={type} class={buttonClass} disabled={disabled}>
+    {text}
+  </button>
+)}

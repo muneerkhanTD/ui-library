@@ -1,0 +1,43 @@
+---
+const { 
+  text = 'Link', 
+  href = '/',
+  rows = [],
+  columns = [],
+  variant = 'default',
+  className = ''
+} = Astro.props;
+
+const variants = {
+  default: 'border-gray-200',
+  striped: 'border-gray-200',
+  bordered: 'border border-gray-300'
+};
+
+const tableClass = `w-full border-collapse ${variants[variant] || variants.default} ${className}`;
+---
+
+{rows && rows.length > 0 ? (
+  <table class={tableClass}>
+    {columns && columns.length > 0 && (
+      <thead>
+        <tr class="border-b border-gray-300 bg-gray-50">
+          {columns.map(col => (
+            <th class="px-4 py-2 text-left font-semibold text-gray-900">{col}</th>
+          ))}
+        </tr>
+      </thead>
+    )}
+    <tbody>
+      {rows.map((row, idx) => (
+        <tr class={`border-b border-gray-200 ${idx % 2 === 1 ? 'bg-gray-50' : ''}`}>
+          {Object.values(row).map(cell => (
+            <td class="px-4 py-2 text-gray-700">{cell}</td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+) : (
+  <a href={href} class="text-indigo-600 hover:underline">{text}</a>
+)}

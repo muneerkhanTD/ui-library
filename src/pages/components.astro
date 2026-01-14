@@ -1,0 +1,157 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Footer from "../components/Footer.astro";
+import Badge from "../components/Badge.astro";
+
+const components = [
+  { name: "Button", icon: "🔘", description: "Versatile button component with multiple variants, sizes, and states" },
+  { name: "Card", icon: "📋", description: "Flexible card layout perfect for content grouping and containers" },
+  { name: "Badge", icon: "🏷️", description: "Compact component for status labels and category tags" },
+  { name: "Avatar", icon: "👤", description: "User profile avatars with fallback support and size options" },
+  { name: "Input", icon: "📝", description: "Form input field with validation, icons, and placeholder support" },
+  { name: "Table", icon: "📊", description: "Data table component with sorting, pagination, and responsive design" },
+  { name: "Modal", icon: "🪟", description: "Dialog and modal windows for focused user interactions" },
+  { name: "Toast", icon: "🔔", description: "Notification messages with auto-dismiss functionality" },
+  { name: "Navbar", icon: "🧭", description: "Top navigation bar with logo, links, and user menu support" },
+  { name: "Sidebar", icon: "📱", description: "Collapsible sidebar menu for app navigation and content" },
+  { name: "Dropdown", icon: "▼", description: "Dropdown menu component for action selection" },
+  { name: "Pagination", icon: "📄", description: "Page navigation component for large datasets" },
+  { name: "Tabs", icon: "📑", description: "Tabbed content sections for organized information" },
+  { name: "Accordion", icon: "📂", description: "Collapsible content panels for expandable sections" },
+  { name: "Tooltip", icon: "💬", description: "Contextual help tooltips for enhanced user guidance" },
+  { name: "Spinner", icon: "⏳", description: "Loading indicators for async operations" },
+  { name: "Checkbox", icon: "☑️", description: "Checkbox input control for multiple selections" },
+  { name: "Radio", icon: "⭕", description: "Radio button input for single selection from multiple options" },
+  { name: "Toggle", icon: "🔘", description: "Toggle switch control for boolean selections" },
+  { name: "Stepper", icon: "📍", description: "Multi-step form indicator showing progress through steps" },
+  { name: "Breadcrumb", icon: "🔗", description: "Navigation breadcrumbs showing current page hierarchy" },
+  { name: "Progress", icon: "📈", description: "Progress indicators for task completion visualization" },
+  { name: "Chip", icon: "🏷️", description: "Compact component tags for filtering and selection" },
+  { name: "Select", icon: "📋", description: "Dropdown select input for choosing from options" },
+  { name: "Textarea", icon: "📄", description: "Multi-line text input for longer text content" },
+  { name: "Alert", icon: "⚠️", description: "Alert messages for important notifications and warnings" },
+  { name: "Link", icon: "🔗", description: "Styled link component with hover effects" },
+  { name: "List", icon: "📝", description: "Flexible list component for ordered and unordered lists" },
+  { name: "Divider", icon: "─", description: "Visual divider for separating content sections" },
+  { name: "Stack", icon: "📚", description: "Utility component for flexible layout stacking" },
+  { name: "Grid", icon: "⊞", description: "CSS Grid layout wrapper component" }
+];
+---
+
+<BaseLayout title="Components Library - DevPath" description="Explore 30+ production-ready UI components for your .NET and web projects.">
+  <!-- Hero Section -->
+  <section class="bg-linear-to-br from-indigo-600 via-purple-600 to-pink-600 text-white py-24 px-6 mb-16">
+    <div class="max-w-5xl mx-auto text-center">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6">Component Library</h1>
+      <p class="text-xl text-indigo-100 mb-8">
+        30+ production-ready, fully accessible UI components. Copy, customize, and deploy.
+      </p>
+      <div class="flex gap-3 justify-center flex-wrap">
+        <input 
+          type="text" 
+          placeholder="Search components..." 
+          class="px-6 py-3 rounded-full text-gray-900 w-full md:w-96 focus:outline-none focus:ring-2 focus:ring-pink-400"
+        />
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-6 mb-20">
+    <!-- Stats Section -->
+    <div class="grid md:grid-cols-4 gap-6 mb-20">
+      <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl p-8 border border-indigo-200">
+        <div class="text-4xl font-bold text-indigo-600 mb-2">30+</div>
+        <p class="text-gray-700 font-semibold">Components</p>
+      </div>
+      <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 border border-purple-200">
+        <div class="text-4xl font-bold text-purple-600 mb-2">100%</div>
+        <p class="text-gray-700 font-semibold">Accessible</p>
+      </div>
+      <div class="bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl p-8 border border-pink-200">
+        <div class="text-4xl font-bold text-pink-600 mb-2">0</div>
+        <p class="text-gray-700 font-semibold">Dependencies</p>
+      </div>
+      <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 border border-orange-200">
+        <div class="text-4xl font-bold text-orange-600 mb-2">MIT</div>
+        <p class="text-gray-700 font-semibold">License</p>
+      </div>
+    </div>
+
+    <!-- Component Categories Detailed -->
+    <section class="mb-20">
+      <h2 class="text-4xl font-bold text-gray-900 mb-12">Browse All Components</h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {components.map(comp => (
+          <a href={`/docs/${comp.name.toLowerCase()}`} class="group bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg hover:border-indigo-300 transition">
+            <div class="flex items-start gap-4">
+              <span class="text-4xl">{comp.icon}</span>
+              <div class="flex-1">
+                <h3 class="text-lg font-bold text-gray-900 group-hover:text-indigo-600 transition">{comp.name}</h3>
+                <p class="text-sm text-gray-600 mt-1">{comp.description}</p>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section> 
+
+    <!-- Feature Highlights -->
+    <section class="mb-20">
+      <h2 class="text-4xl font-bold text-gray-900 text-center mb-12">Why Choose DevPath Components?</h2>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl border border-gray-200 p-8 hover:shadow-lg transition">
+          <div class="text-5xl mb-4">♿</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Fully Accessible</h3>
+          <p class="text-gray-600">WCAG 2.1 AA compliant components with keyboard navigation and screen reader support out of the box.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-gray-200 p-8 hover:shadow-lg transition">
+          <div class="text-5xl mb-4">⚡</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Zero Dependencies</h3>
+          <p class="text-gray-600">Pure HTML, CSS, and JavaScript. No bloat. No frameworks required. Use with any tech stack.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-gray-200 p-8 hover:shadow-lg transition">
+          <div class="text-5xl mb-4">🎨</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Fully Customizable</h3>
+          <p class="text-gray-600">Easy to theme and customize. Tailwind CSS integration. Design tokens included.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-gray-200 p-8 hover:shadow-lg transition">
+          <div class="text-5xl mb-4">📱</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Mobile First</h3>
+          <p class="text-gray-600">Responsive by default. Touch-friendly interactions. Works on all devices and screen sizes.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-gray-200 p-8 hover:shadow-lg transition">
+          <div class="text-5xl mb-4">🔧</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Easy Integration</h3>
+          <p class="text-gray-600">Works seamlessly with Astro, React, Vue, Angular, and any .NET frameworks.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-gray-200 p-8 hover:shadow-lg transition">
+          <div class="text-5xl mb-4">📚</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Complete Docs</h3>
+          <p class="text-gray-600">Comprehensive documentation with live examples, API reference, and best practices.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Start -->
+    <section class="bg-linear-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-2xl p-12 text-white text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4">Get Started in Minutes</h2>
+      <p class="text-lg text-indigo-100 mb-8 max-w-2xl mx-auto">
+        Copy any component, customize it to match your brand, and deploy to production.
+      </p>
+      <div class="flex gap-4 justify-center flex-wrap">        
+        <a href="https://github.com/devpath" class="border-2 border-white text-white px-8 py-3 rounded-lg font-bold hover:bg-white/10 transition">
+          View on GitHub
+        </a>
+      </div>
+    </section>
+    <Badge variant="warning" dismissible>Warning</Badge>
+
+  <Footer />
+</BaseLayout>

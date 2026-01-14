@@ -1,0 +1,12 @@
+---
+const { items = [], ordered = false } = Astro.props;
+---
+{ordered ? (
+  <ol class="list-decimal pl-6">
+    {items.map(item => <li>{item}</li>)}
+  </ol>
+) : (
+  <ul class="list-disc pl-6">
+    {items.map(item => <li>{item}</li>)}
+  </ul>
+)}

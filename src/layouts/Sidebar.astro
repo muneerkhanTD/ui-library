@@ -1,0 +1,10 @@
+---
+import VerticalNav from '../components/VerticalNav.astro';
+import LogoutButton from "../components/auth/LogoutButton.jsx";
+---
+
+<aside class="h-screen max-w-xs flex flex-col fixed left-0 top-0">
+  <VerticalNav>
+    <LogoutButton client:idle />
+  </VerticalNav>
+</aside>

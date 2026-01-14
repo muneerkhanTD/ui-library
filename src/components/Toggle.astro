@@ -1,0 +1,19 @@
+---
+const { 
+  checked = false, 
+  onChange = () => {},
+  label = '',
+  disabled = false,
+  className = '',
+  name = ''
+} = Astro.props;
+---
+
+<label class={`inline-flex items-center gap-3 cursor-pointer ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`}>
+  {label && <span class="font-medium">{label}</span>}
+  <input type="checkbox" checked={checked} onchange={onChange} class="hidden" disabled={disabled} name={name} />
+  <span class={`w-10 h-6 flex items-center ${checked ? 'bg-indigo-600' : 'bg-gray-300'} rounded-full p-1 transition-colors duration-300 ease-in-out`}>
+    <span class={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-300 ${checked ? 'translate-x-4' : 'translate-x-0'}`}></span>
+  </span>
+  {!label && <span class="text-sm">{checked ? 'On' : 'Off'}</span>}
+</label>
