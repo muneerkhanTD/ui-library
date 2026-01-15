@@ -1,11 +1,55 @@
 ---
-const { steps = [], current = 0 } = Astro.props;
+import { cn } from '../utils/classnames';
+
+const {
+  steps = [],
+  activeStep = 0,
+  variant = 'horizontal',
+  size = 'md',
+  class: extraClass = '',
+} = Astro.props;
+
+const stepSize = cn(
+  'rounded-full flex items-center justify-center font-semibold',
+  size === 'sm' && 'w-6 h-6 text-xs',
+  size === 'md' && 'w-8 h-8 text-sm',
+  size === 'lg' && 'w-10 h-10 text-base'
+);
+
+const connectorSize = cn(
+  'bg-gray-300 transition-colors',
+  variant === 'horizontal' && 'h-1',
+  variant === 'vertical' && 'w-1'
+);
 ---
-<div class="flex items-center gap-4">
+
+<div class={cn(
+  'flex gap-4',
+  variant === 'vertical' && 'flex-col',
+  extraClass
+)}>
   {steps.map((step, i) => (
-    <div class="flex items-center gap-2">
-      <div class={`rounded-full w-8 h-8 flex items-center justify-center font-bold ${i <= current ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-600'}`}>{i + 1}</div>
-      {i < steps.length - 1 && <div class="w-8 h-1 bg-gray-300"></div>}
+    <div class={cn(
+      'flex items-center gap-4',
+      variant === 'vertical' && 'flex-col'
+    )}>
+      <div class={cn(
+        stepSize,
+        i < activeStep ? 'bg-indigo-600 text-white' : i === activeStep ? 'bg-indigo-100 text-indigo-600 ring-2 ring-indigo-600' : 'bg-gray-200 text-gray-600'
+      )}>
+        {i < activeStep ? (
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+        ) : (
+          i + 1
+        )}
+      </div>
+      <div class="flex-1">
+        <p class="text-sm font-semibold text-gray-900">{step.label || step}</p>
+        {step.description && <p class="text-xs text-gray-600">{step.description}</p>}
+      </div>
+      {i < steps.length - 1 && variant === 'horizontal' && (
+        <div class={cn(connectorSize, i < activeStep - 1 ? 'bg-indigo-600' : 'bg-gray-300')} style={`width: ${size === 'sm' ? '32px' : size === 'lg' ? '48px' : '40px'}`}></div>
+      )}
     </div>
   ))}
 </div>

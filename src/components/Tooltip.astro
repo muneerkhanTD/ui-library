@@ -1,26 +1,32 @@
 ---
-const { 
-  text = '', 
-  children,
+import { cn } from '../utils/classnames';
+
+const {
+  text = '',
   position = 'top',
-  className = ''
+  variant = 'dark',
+  size = 'md',
+  class: extraClass = '',
 } = Astro.props;
 
-const positions = {
-  top: 'bottom-full mb-2 left-1/2 -translate-x-1/2',
-  bottom: 'top-full mt-2 left-1/2 -translate-x-1/2',
-  left: 'right-full mr-2 top-1/2 -translate-y-1/2',
-  right: 'left-full ml-2 top-1/2 -translate-y-1/2'
-};
-
-let show = false;
+const tooltipClass = cn(
+  'absolute px-3 py-2 rounded text-sm font-medium whitespace-nowrap z-50 pointer-events-none',
+  variant === 'dark' && 'bg-gray-900 text-white',
+  variant === 'light' && 'bg-white text-gray-900 border border-gray-200',
+  size === 'sm' && 'text-xs px-2 py-1',
+  size === 'lg' && 'text-base px-4 py-3',
+  position === 'top' && 'bottom-full mb-2 left-1/2 -translate-x-1/2',
+  position === 'bottom' && 'top-full mt-2 left-1/2 -translate-x-1/2',
+  position === 'left' && 'right-full mr-2 top-1/2 -translate-y-1/2',
+  position === 'right' && 'left-full ml-2 top-1/2 -translate-y-1/2',
+  extraClass
+);
 ---
 
-<span class={`relative inline-block ${className}`} onmouseenter={() => show = true} onmouseleave={() => show = false}>
-  {children}
-  {show && (
-    <span class={`absolute ${positions[position] || positions.top} px-3 py-1 bg-gray-900 text-white text-xs rounded shadow-lg z-10 whitespace-nowrap`}>
-      {text}
-    </span>
-  )}
-</span>
+<div class="relative inline-block group">
+  <slot />
+  <div class={cn(tooltipClass, 'opacity-0 group-hover:opacity-100 transition-opacity duration-200')}>
+    {text}
+  </div>
+</div>
+

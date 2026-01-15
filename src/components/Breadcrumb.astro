@@ -1,11 +1,42 @@
 ---
-const { items = [] } = Astro.props;
+import { cn } from '../utils/classnames';
+
+const {
+  items = [],
+  variant = 'default',
+  size = 'md',
+  class: extraClass = '',
+} = Astro.props;
+
+const itemClass = cn(
+  'text-indigo-600 hover:text-indigo-700 hover:underline transition-colors',
+  size === 'sm' && 'text-xs',
+  size === 'lg' && 'text-base'
+);
+
+const separatorClass = cn(
+  'text-gray-400 mx-2',
+  size === 'sm' && 'text-xs',
+  size === 'lg' && 'text-base'
+);
 ---
-<nav class="flex items-center gap-2 text-sm">
+
+<nav class={cn(
+  'flex items-center',
+  size === 'sm' && 'text-sm',
+  size === 'lg' && 'text-lg',
+  extraClass
+)} aria-label="Breadcrumb">
   {items.map((item, i) => (
     <>
-      <a href={item.href} class="text-indigo-600 hover:underline">{item.label}</a>
-      {i < items.length - 1 && <span class="text-gray-400">/</span>}
+      {i > 0 && <span class={separatorClass}>/</span>}
+      {item.href ? (
+        <a href={item.href} class={itemClass}>
+          {item.label}
+        </a>
+      ) : (
+        <span class="text-gray-700 font-medium">{item.label}</span>
+      )}
     </>
   ))}
 </nav>

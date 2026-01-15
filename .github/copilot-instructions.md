@@ -1,5 +1,5 @@
 
-# DevPath UI Library — Copilot Instructions
+# TD UI Library — Copilot Instructions
 
 ## Project Overview
 
@@ -246,8 +246,8 @@ All 35+ components are fully functional with consistent variants and sizing. Eac
 
 ## Deployment
 
-- **Live URL:** https://ui-library-sepia-one.vercel.app/
-- **Repository:** https://github.com/muneerkhanTD/ui-library
+- **Live URL:** https://td-ui-library.vercel.app/
+- **Repository:** https://github.com/muneerkhanTD/td-ui-library
 - **Deployment Platform:** Vercel (auto-deploys on GitHub push)
 - **Build Adapter:** @astrojs/vercel
 - **Dashboard:** Prerendered as static page at `/dashboard`

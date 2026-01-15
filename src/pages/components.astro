@@ -2,6 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Footer from "../components/Footer.astro";
 import Badge from "../components/Badge.astro";
+import Dropdown from "../components/Dropdown.astro";
+import Tooltip from "../components/Tooltip.astro";
 
 const components = [
   { name: "Button", icon: "🔘", description: "Versatile button component with multiple variants, sizes, and states" },
@@ -10,14 +12,8 @@ const components = [
   { name: "Avatar", icon: "👤", description: "User profile avatars with fallback support and size options" },
   { name: "Input", icon: "📝", description: "Form input field with validation, icons, and placeholder support" },
   { name: "Table", icon: "📊", description: "Data table component with sorting, pagination, and responsive design" },
-  { name: "Modal", icon: "🪟", description: "Dialog and modal windows for focused user interactions" },
   { name: "Toast", icon: "🔔", description: "Notification messages with auto-dismiss functionality" },
-  { name: "Navbar", icon: "🧭", description: "Top navigation bar with logo, links, and user menu support" },
-  { name: "Sidebar", icon: "📱", description: "Collapsible sidebar menu for app navigation and content" },
   { name: "Dropdown", icon: "▼", description: "Dropdown menu component for action selection" },
-  { name: "Pagination", icon: "📄", description: "Page navigation component for large datasets" },
-  { name: "Tabs", icon: "📑", description: "Tabbed content sections for organized information" },
-  { name: "Accordion", icon: "📂", description: "Collapsible content panels for expandable sections" },
   { name: "Tooltip", icon: "💬", description: "Contextual help tooltips for enhanced user guidance" },
   { name: "Spinner", icon: "⏳", description: "Loading indicators for async operations" },
   { name: "Checkbox", icon: "☑️", description: "Checkbox input control for multiple selections" },
@@ -25,20 +21,18 @@ const components = [
   { name: "Toggle", icon: "🔘", description: "Toggle switch control for boolean selections" },
   { name: "Stepper", icon: "📍", description: "Multi-step form indicator showing progress through steps" },
   { name: "Breadcrumb", icon: "🔗", description: "Navigation breadcrumbs showing current page hierarchy" },
-  { name: "Progress", icon: "📈", description: "Progress indicators for task completion visualization" },
   { name: "Chip", icon: "🏷️", description: "Compact component tags for filtering and selection" },
   { name: "Select", icon: "📋", description: "Dropdown select input for choosing from options" },
   { name: "Textarea", icon: "📄", description: "Multi-line text input for longer text content" },
   { name: "Alert", icon: "⚠️", description: "Alert messages for important notifications and warnings" },
   { name: "Link", icon: "🔗", description: "Styled link component with hover effects" },
   { name: "List", icon: "📝", description: "Flexible list component for ordered and unordered lists" },
-  { name: "Divider", icon: "─", description: "Visual divider for separating content sections" },
   { name: "Stack", icon: "📚", description: "Utility component for flexible layout stacking" },
   { name: "Grid", icon: "⊞", description: "CSS Grid layout wrapper component" }
 ];
 ---
 
-<BaseLayout title="Components Library - DevPath" description="Explore 30+ production-ready UI components for your .NET and web projects.">
+<BaseLayout title="Components Library - TD" description="Explore 30+ production-ready UI components for your .NET and web projects.">
   <!-- Hero Section -->
   <section class="bg-linear-to-br from-indigo-600 via-purple-600 to-pink-600 text-white py-24 px-6 mb-16">
     <div class="max-w-5xl mx-auto text-center">
@@ -46,13 +40,6 @@ const components = [
       <p class="text-xl text-indigo-100 mb-8">
         30+ production-ready, fully accessible UI components. Copy, customize, and deploy.
       </p>
-      <div class="flex gap-3 justify-center flex-wrap">
-        <input 
-          type="text" 
-          placeholder="Search components..." 
-          class="px-6 py-3 rounded-full text-gray-900 w-full md:w-96 focus:outline-none focus:ring-2 focus:ring-pink-400"
-        />
-      </div>
     </div>
   </section>
 
@@ -80,7 +67,7 @@ const components = [
     <!-- Component Categories Detailed -->
     <section class="mb-20">
       <h2 class="text-4xl font-bold text-gray-900 mb-12">Browse All Components</h2>
-      
+
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {components.map(comp => (
           <a href={`/docs/${comp.name.toLowerCase()}`} class="group bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg hover:border-indigo-300 transition">
@@ -98,7 +85,7 @@ const components = [
 
     <!-- Feature Highlights -->
     <section class="mb-20">
-      <h2 class="text-4xl font-bold text-gray-900 text-center mb-12">Why Choose DevPath Components?</h2>
+      <h2 class="text-4xl font-bold text-gray-900 text-center mb-12">Why Choose TD Components?</h2>
       
       <div class="grid md:grid-cols-3 gap-8">
         <div class="bg-white rounded-2xl border border-gray-200 p-8 hover:shadow-lg transition">
@@ -146,7 +133,7 @@ const components = [
         Copy any component, customize it to match your brand, and deploy to production.
       </p>
       <div class="flex gap-4 justify-center flex-wrap">        
-        <a href="https://github.com/devpath" class="border-2 border-white text-white px-8 py-3 rounded-lg font-bold hover:bg-white/10 transition">
+        <a href="https://github.com/muneerkhanTD/ui-library/" class="border-2 border-white text-white px-8 py-3 rounded-lg font-bold hover:bg-white/10 transition">
           View on GitHub
         </a>
       </div>

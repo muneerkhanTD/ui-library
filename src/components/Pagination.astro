@@ -1,10 +1,74 @@
 ---
-const { current = 1, total = 10, onPageChange = () => {} } = Astro.props;
+const { current = 1, total = 10 } = Astro.props;
+
+// Generate a unique ID for this pagination instance
+const paginationId = Math.random().toString(36).substring(7);
+const pageNumbers = [...Array(total)].map((_, i) => i + 1);
 ---
-<nav class="flex items-center gap-2">
-  <button class="px-3 py-1 rounded bg-gray-200" disabled={current === 1} onclick={() => onPageChange(current - 1)}>&lt;</button>
-  {[...Array(total)].map((_, i) => (
-    <button class={`px-3 py-1 rounded ${current === i + 1 ? 'bg-indigo-600 text-white' : 'bg-gray-100'}`} onclick={() => onPageChange(i + 1)}>{i + 1}</button>
+
+<nav class="flex items-center gap-2" data-pagination-id={paginationId}>
+  <button 
+    class="px-3 py-2 rounded bg-gray-200 text-gray-900 hover:bg-gray-300 transition disabled:opacity-50 disabled:cursor-not-allowed font-semibold" 
+    data-page="prev"
+    disabled={current === 1}
+  >
+    ←
+  </button>
+  
+  {pageNumbers.map((page) => (
+    <button 
+      class={`px-3 py-2 rounded font-semibold transition ${
+        current === page 
+          ? 'bg-indigo-600 text-white' 
+          : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+      }`}
+      data-page={page}
+      aria-current={current === page ? 'page' : undefined}
+    >
+      {page}
+    </button>
   ))}
-  <button class="px-3 py-1 rounded bg-gray-200" disabled={current === total} onclick={() => onPageChange(current + 1)}>&gt;</button>
+  
+  <button 
+    class="px-3 py-2 rounded bg-gray-200 text-gray-900 hover:bg-gray-300 transition disabled:opacity-50 disabled:cursor-not-allowed font-semibold" 
+    data-page="next"
+    disabled={current === total}
+  >
+    →
+  </button>
 </nav>
+
+<script define:vars={{ paginationId, current, total }}>
+{
+  const container = document.querySelector(`[data-pagination-id="${paginationId}"]`);
+  
+  if (container) {
+    const buttons = container.querySelectorAll('button');
+    
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const page = button.getAttribute('data-page');
+        let newPage = current;
+        
+        if (page === 'prev' && current > 1) {
+          newPage = current - 1;
+        } else if (page === 'next' && current < total) {
+          newPage = current + 1;
+        } else if (page !== 'prev' && page !== 'next') {
+          newPage = parseInt(page);
+        }
+        
+        // Dispatch custom event that can be listened to
+        const event = new CustomEvent('pageChange', { 
+          detail: { page: newPage },
+          bubbles: true 
+        });
+        container.dispatchEvent(event);
+        
+        // Log for debugging
+        console.log('Page changed to:', newPage);
+      });
+    });
+  }
+}
+</script>

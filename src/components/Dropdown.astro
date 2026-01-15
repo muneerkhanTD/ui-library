@@ -1,20 +1,90 @@
 ---
-const { label = 'Dropdown', items = [] } = Astro.props;
-let open = false;
-function toggle() { open = !open; }
+import { cn } from '../utils/classnames';
+
+const {
+  trigger = 'Menu',
+  items = [],
+  position = 'bottom',
+  variant = 'primary',
+  size = 'md',
+  class: extraClass = '',
+} = Astro.props;
+
+const triggerId = `dropdown-trigger-${Math.random().toString(36).substr(2, 9)}`;
+const menuId = `dropdown-menu-${Math.random().toString(36).substr(2, 9)}`;
+
+const triggerClass = cn(
+  'inline-flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all',
+  variant === 'primary' && 'bg-indigo-600 text-white hover:bg-indigo-700',
+  variant === 'secondary' && 'bg-gray-100 text-gray-900 hover:bg-gray-200',
+  variant === 'outline' && 'border border-gray-300 text-gray-700 hover:bg-gray-50',
+  size === 'sm' && 'text-sm px-3 py-1.5',
+  size === 'lg' && 'text-lg px-6 py-3',
+  extraClass
+);
+
+const menuClass = cn(
+  'absolute bg-white border border-gray-200 rounded-lg shadow-lg min-w-48 z-50 hidden',
+  position === 'top' && 'bottom-full mb-2',
+  position === 'bottom' && 'top-full mt-2',
+  position === 'left' && 'right-full mr-2',
+  position === 'right' && 'left-full ml-2'
+);
+
+const itemClass = 'block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 transition-colors';
 ---
-<div class="relative inline-block text-left">
-  <button type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50" onclick={toggle}>
-    {label}
-    <svg class="-mr-1 ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+
+<div class="relative inline-block">
+  <button id={triggerId} class={triggerClass} aria-haspopup="true" aria-expanded="false">
+    {trigger}
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
   </button>
-  {open && (
-    <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
-      <div class="py-1">
-        {items.map(item => (
-          <a href={item.href} class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{item.label}</a>
-        ))}
-      </div>
-    </div>
-  )}
+  
+  <div id={menuId} class={menuClass}>
+    {items.map((item, idx) => (
+      <a 
+        href={item.href || '#'} 
+        class={cn(
+          itemClass, 
+          idx === 0 && 'rounded-t-lg', 
+          idx === items.length - 1 && 'rounded-b-lg'
+        )}
+      >
+        {item.label}
+      </a>
+    ))}
+  </div>
 </div>
+
+<script define:vars={{ triggerId, menuId }}>
+  const trigger = document.getElementById(triggerId);
+  const menu = document.getElementById(menuId);
+
+  if (trigger && menu) {
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      menu.classList.toggle('hidden');
+      trigger.setAttribute('aria-expanded', menu.classList.contains('hidden') ? 'false' : 'true');
+    });
+
+    // Close dropdown when clicking on menu items
+    menu.querySelectorAll('a').forEach(item => {
+      item.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        trigger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!trigger.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.add('hidden');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+</script>
+
+
